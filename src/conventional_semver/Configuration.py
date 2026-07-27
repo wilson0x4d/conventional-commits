@@ -32,7 +32,7 @@ class Configuration:
         assert config.repo_path is not None
     """
 
-    changelog_output_file: str
+    changelog_output_file: str | None
     changelog_template: str | None
     commit_url: str | None
     config_file: str
@@ -310,10 +310,6 @@ class Configuration:
 
         if (self.start_commit_hash or self.start_tag) and not self.changelog_output_file:
             self.changelog_output_file = str(Path.cwd() / 'CHANGELOG.md')
-
-        # Default changelog output when no config file exists and --changelog was given
-        if not config_processed and not self.changelog_output_file:
-            self.changelog_output_file = 'CHANGELOG.md'
 
         if not self.git_path:
             self.git_path = 'git'
