@@ -178,6 +178,7 @@ class ChangelogOutputGenerator(OutputGenerator):
 
         changelog = Changelog()
         output = changelog.generate(data, self._changelog_template_path)
+        assert self.__config.changelog_output_file is not None
         Path(self.__config.changelog_output_file).write_text(
             output, encoding='utf-8'
         )
